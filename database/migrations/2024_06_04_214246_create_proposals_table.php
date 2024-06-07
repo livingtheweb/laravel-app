@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('proposals', function (Blueprint $table) {
             $table->id();
+            // ID from user who belongs the idea
+            // When we delete a user, we delet his proposals -> cascadeOnDelete()
+            // Foreign key
+            $table->foreignId('user_id')-> constrained()->cascadeOnDelete();
             $table->string('title');
             $table->text('description');
             // Likes
